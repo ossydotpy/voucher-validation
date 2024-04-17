@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Processing</title>
+    <link rel='stylesheet' href='{{url_for('static', filename='style.css')}}'>
+</head>
+<body>
+    <li><a href={{url_for('check_result')}}>Check Results</a></li>
+    <h1>Buy Voucher</h1>
+    <form id="paymentForm" action="/process_payment" method="POST">
+        <label for="paymentStatus">Payment Status:</label>
+        <select id="paymentStatus" name="status" required>
+            <option value="success">Success</option>
+            <option value="failure">Failure</option>
+        </select>
+        <br><br>
+        <label for="paymentNumber">Payment Number:</label>
+        <input type="text" id="paymentNumber" name="number" required>
+        <br><br>
+        <button type="submit">Pay</button>
+    </form>
+
+    {% if result %}
+    <div id="resultContainer">
+        <h2>{{ result['message'] }}</h2>
+        {% if result['success'] %}
+        <p>Serial Key: {{ result['serial_key'] }}</p>
+        <p>PIN: {{ result['pin'] }}</p>
+        <p style='color:red'><em style='font-weight:bold'>WARNING</em>: WRITE DOWN THIS CODE BEFORE LEAVING THE PAGE OR REFRESSHING</p>
+        <p><a href="{{url_for('check_result')}}">click here to check results</a></p>
+        {% endif %}
+    </div>
+    {% endif %}
+</body>
+</html>

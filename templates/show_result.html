@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Verification Result</h1>
+
+        {% if remaining_checks > 0 %}
+            <p>Serial key and PIN combination verified successfully!</p>
+            <p>Remaining checks: {{ remaining_checks }}</p>
+            <a href="{{ url_for('check_result') }}" class="btn">Verify Again</a>
+        {% else %}
+            <p>All checks used up.</p>
+            <a href="{{ url_for('index') }}" class="btn">Purchase Another Voucher</a>
+        {% endif %}
+
+        
+    </div>
+</body>
+</html>

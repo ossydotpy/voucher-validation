@@ -11,6 +11,7 @@ def initialize_db():
 
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS payments (
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 number TEXT,
                 serial_key TEXT,
                 pin TEXT,
